@@ -35,7 +35,17 @@ public class AccountServicesIMP implements AccountServices {
 		account.setGender(accountDTO.getGender());
 		System.out.println(account);
 		accountRepo.saveAndFlush(account);
-		return accountRepo.findByEmail(account.getEmail());
+		return findInfoByEmail(account.getEmail());
+	}
+
+	@Override
+	public Account findByEmail(String email) {
+		return accountRepo.findByEmail(email);
+	}
+
+	@Override
+	public AccountDTO findInfoByEmail(String email) {
+		return accountRepo.findInfoByEmail(email);
 	}
 
 }

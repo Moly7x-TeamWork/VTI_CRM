@@ -21,5 +21,7 @@ public interface AccountRepo extends JpaRepository<Account, Long>{
 	List<AccountDTO> findAllInfoAccount();
 	
 	@Query("SELECT new com.vti.dto.AccountDTO(ac.idAccount, ac.email, ac.role, ac.firstName, ac.lastName, ac.gender) FROM Account ac JOIN ac.role Role WHERE ac.email = :email")
-	AccountDTO findByEmail(@Param("email") String email);
+	AccountDTO findInfoByEmail(@Param("email") String email);
+	
+	Account findByEmail(@Param("email") String email);
 }

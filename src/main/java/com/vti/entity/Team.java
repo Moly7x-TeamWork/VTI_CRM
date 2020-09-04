@@ -2,7 +2,7 @@
 package com.vti.entity;
 
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +40,6 @@ public class Team {
 	
 	@Column(name = "creationdate", columnDefinition = "DATETIME DEFAULT NOW()")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar creationDate;
+	private Date creationDate;
 	
 }
