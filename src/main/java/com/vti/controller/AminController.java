@@ -49,6 +49,10 @@ public class AminController {
 	public TeamDTO createTeam(@RequestBody TeamDTO teamDTO) {
 		System.out.println(teamDTO);
 		return teamServices.createTeam(teamDTO, accountServices.findByEmail(teamDTO.getEmail()));
-
+	}
+	
+	@GetMapping("test")
+	public void test(@RequestBody AccountDTO accountDTO) {
+		System.out.println(accountDTO);
 	}
 }

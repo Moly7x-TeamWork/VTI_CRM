@@ -9,15 +9,16 @@ import org.springframework.stereotype.Service;
 import com.vti.dto.AccountDTO;
 import com.vti.entity.Account;
 import com.vti.entity.Role;
+import com.vti.exception.DataException;
 import com.vti.repository.AccountRepo;
 import com.vti.services.AccountServices;
 
 @Service
 public class AccountServicesIMP implements AccountServices {
-	
+
 	@Autowired
 	private AccountRepo accountRepo;
-	
+
 	@Override
 	public List<AccountDTO> findAllInfoAccount() {
 		return accountRepo.findAllInfoAccount();
@@ -25,7 +26,13 @@ public class AccountServicesIMP implements AccountServices {
 
 	@Override
 	public AccountDTO createAccount(AccountDTO accountDTO, Role role) {
-//		accountRepo.findByEmail(account.getEmail()
+//		Check email exist or not
+		AccountDTO checkAcccountDTO = accountRepo.findInfoByEmail(accountDTO.getEmail());
+		if (checkAcccountDTO != null) {
+			throw new DataException("Duplicated email", "This email has been used");
+		}
+		
+//		If not, create account
 		Account account = new Account();
 		account.setRole(role);
 		account.setEmail(accountDTO.getEmail());
@@ -33,7 +40,6 @@ public class AccountServicesIMP implements AccountServices {
 		account.setLastName(accountDTO.getLastName());
 		account.setFirstName(accountDTO.getFirstName());
 		account.setGender(accountDTO.getGender());
-		System.out.println(account);
 		accountRepo.saveAndFlush(account);
 		return findInfoByEmail(account.getEmail());
 	}
@@ -47,5 +53,4 @@ public class AccountServicesIMP implements AccountServices {
 	public AccountDTO findInfoByEmail(String email) {
 		return accountRepo.findInfoByEmail(email);
 	}
-
 }
