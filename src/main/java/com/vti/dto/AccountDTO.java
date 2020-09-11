@@ -40,4 +40,9 @@ public class AccountDTO {
 		this.gender = gender;
 	}
 	
+	// use in searchAccountbyKeyWord
+	public AccountDTO(String email) {
+		this.email = email;
+	}
+	
 }

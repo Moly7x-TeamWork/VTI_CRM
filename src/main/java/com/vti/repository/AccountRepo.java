@@ -24,4 +24,8 @@ public interface AccountRepo extends JpaRepository<Account, Long>{
 	AccountDTO findInfoByEmail(@Param("email") String email);
 	
 	Account findByEmail(@Param("email") String email);
+	
+	//Search account by keyword, search in email
+	@Query("SELECT new com.vti.dto.AccountDTO(ac.email) FROM Account ac WHERE ac.email LIKE :key%")
+	List<AccountDTO> searchAccountbyKeyWord(@Param("key") String key);
 }

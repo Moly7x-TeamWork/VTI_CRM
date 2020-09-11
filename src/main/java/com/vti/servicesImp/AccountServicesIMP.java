@@ -26,13 +26,13 @@ public class AccountServicesIMP implements AccountServices {
 
 	@Override
 	public AccountDTO createAccount(AccountDTO accountDTO, Role role) {
-//		Check email exist or not
+		//Check email exist or not
 		AccountDTO checkAcccountDTO = accountRepo.findInfoByEmail(accountDTO.getEmail());
 		if (checkAcccountDTO != null) {
 			throw new DataException("Duplicated email", "This email has been used");
 		}
 		
-//		If not, create account
+		//If not, create account
 		Account account = new Account();
 		account.setRole(role);
 		account.setEmail(accountDTO.getEmail());
@@ -52,5 +52,18 @@ public class AccountServicesIMP implements AccountServices {
 	@Override
 	public AccountDTO findInfoByEmail(String email) {
 		return accountRepo.findInfoByEmail(email);
+	}
+
+	/* 
+	* @see com.vti.services.AccountServices#searchAccount(java.lang.String)
+	*/
+	@Override
+	public List<AccountDTO> searchAccount(String key) {
+		//Check length key word, if zero or null or only whitespace, throw exception
+		if (key == null || key.isBlank() || key.isEmpty()) {
+			throw new DataException("Wrong text search", "This text search is null or only has whitespace");
+		}
+		// search and return result
+		return accountRepo.searchAccountbyKeyWord(key);
 	}
 }

@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,10 +29,6 @@ public class Team {
 	@Column(name = "idteam")
 	private long idTeam;
 	
-	@OneToOne
-	@JoinColumn(name = "idaccount")
-	private Account account;
-	
 	@Column(name = "teamname")
 	private String teamName;
 	
@@ -42,4 +36,9 @@ public class Team {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
+	//For Creating new team and save it to database
+	public Team(String teamName, Date creationDate) {
+		this.teamName = teamName;
+		this.creationDate = creationDate;
+	}
 }

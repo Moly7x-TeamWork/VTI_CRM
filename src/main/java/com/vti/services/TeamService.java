@@ -1,15 +1,31 @@
 //
 package com.vti.services;
 
-import java.util.List;
+import com.vti.entity.Team;
 
-import com.vti.dto.TeamDTO;
-import com.vti.entity.Account;
-
-public interface TeamService {
-	List<TeamDTO> findAllInfoTeam();
+public interface TeamService {	
+	/**
+	 * 
+	 * This method is find team by teamname and return team has just found. 
+	 * It will return null if not found
+	 * 
+	 * @author: Tân
+	 * @create_date: 11/09/2020
+	 * @param teamName
+	 * @return Team
+	 */
+	Team findTeamByTeamName(String teamName);
 	
-	TeamDTO findInfoByEmail(String email);
-	
-	TeamDTO createTeam(TeamDTO teamDTO, Account account);
+	/**
+	 * 
+	 * This method is create new team by Teamname.
+	 * It will throw exception if teamName has been use.
+	 * If not, it will create team 
+	 * 
+	 * @author: Tân
+	 * @create_date: 11/09/2020
+	 * @param teamName
+	 * @return Team
+	 */
+	Team createTeam(String teamName);
 }

@@ -2,14 +2,10 @@
 package com.vti.servicesImp;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vti.dto.AccountDTO;
-import com.vti.dto.TeamDTO;
-import com.vti.entity.Account;
 import com.vti.entity.Team;
 import com.vti.exception.DataException;
 import com.vti.repository.TeamRepo;
@@ -21,39 +17,27 @@ public class TeamServiceIMP implements TeamService {
 	@Autowired
 	private TeamRepo teamRepo;
 
-	@Autowired
-	private AccountServicesIMP accountServices;
-
+	/*
+	 * @see com.vti.services.TeamService#findTeamByTeamName(java.lang.String)
+	 */
 	@Override
-	public List<TeamDTO> findAllInfoTeam() {
-		return teamRepo.findAllInfoTeam();
+	public Team findTeamByTeamName(String teamName) {
+		return teamRepo.findTeamByTeamName(teamName);
 	}
 
+	/*
+	 * @see com.vti.services.TeamService#createTeam(java.lang.String)
+	 */
 	@Override
-	public TeamDTO findInfoByEmail(String email) {
-		return teamRepo.findInfoByEmail(email);
-	}
-
-	@Override
-	public TeamDTO createTeam(TeamDTO teamDTO, Account account) {
-		//Check email is exist or not
-		AccountDTO checkAccountDTO = accountServices.findInfoByEmail(teamDTO.getEmail());
-		if (checkAccountDTO == null) {
-			throw new DataException("Not found","This email is not registered");
+	public Team createTeam(String teamName) {
+		// Check team name has been used or not, if yes throw error
+		Team checkTeam = findTeamByTeamName(teamName);
+		if (checkTeam != null) {
+			throw new DataException("Dupplicate team name", "This team name has been used in another team");
 		}
 		
-		//Check email has used or not
-		TeamDTO checkTeamDTO = findInfoByEmail(teamDTO.getEmail());
-		if (checkTeamDTO != null) {
-			throw new DataException("Dupplicate email","This email has been used in another team");
-		}
-		
-		//Create team
-		Team team = new Team();
-		team.setAccount(account);
-		team.setTeamName(teamDTO.getTeamName());
-		team.setCreationDate(new Date());
-		teamRepo.saveAndFlush(team);
-		return findInfoByEmail(teamDTO.getEmail());
+		//Create new team and save it to database
+		Team teamNew = new Team(teamName, new Date());
+		return teamRepo.saveAndFlush(teamNew);
 	}
 }

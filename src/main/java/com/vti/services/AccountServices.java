@@ -16,4 +16,7 @@ public interface AccountServices {
 	AccountDTO findInfoByEmail(@Param("email") String email);
 	
 	AccountDTO createAccount(AccountDTO accountDTO, Role role);
+	
+	//Search account by keyword in email
+	List<AccountDTO> searchAccount(String key);
 }
