@@ -39,7 +39,8 @@ public class AccountDTO{
 	}
 	
 	// use in searchAccountbyKeyWord
-	public AccountDTO(String email) {
+	public AccountDTO(long idAccount, String email) {
+		this.idAccount = idAccount;
 		this.email = email;
 	}
 }
