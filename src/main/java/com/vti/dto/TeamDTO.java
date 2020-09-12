@@ -18,6 +18,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TeamDTO {
 	private long idTeam;
+	
+	private long idAccount;
 
 	private String email;
 
@@ -25,9 +27,10 @@ public class TeamDTO {
 
 	private String creationDate;
 
-	public TeamDTO(long idTeam, String teamName, Account account, Date creationDate) {
+	public TeamDTO(long idTeam,String teamName, Account account, Date creationDate) {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 		this.idTeam = idTeam;
+		this.idAccount = account.getIdAccount();
 		this.email = account.getEmail();
 		this.teamName = teamName;
 		this.creationDate = dateFormat.format(creationDate);

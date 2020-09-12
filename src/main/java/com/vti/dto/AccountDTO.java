@@ -6,21 +6,18 @@ import com.vti.entity.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountDTO {
+public class AccountDTO{
 	
 	private long idAccount;
 	
 	private String email;
 	
+	//for create account
 	private String password;
 	
 	private String nameRole;
@@ -30,7 +27,8 @@ public class AccountDTO {
 	private String lastName;
 	
 	private Gender gender;
-
+	
+	// for everything, convert from Role to nameRole
 	public AccountDTO(long idAccount, String email, Role role, String firstName, String lastName, Gender gender) {
 		this.idAccount = idAccount;
 		this.email = email;
@@ -44,5 +42,4 @@ public class AccountDTO {
 	public AccountDTO(String email) {
 		this.email = email;
 	}
-	
 }

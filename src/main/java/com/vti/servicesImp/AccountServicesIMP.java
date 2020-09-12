@@ -66,4 +66,12 @@ public class AccountServicesIMP implements AccountServices {
 		// search and return result
 		return accountRepo.searchAccountbyKeyWord(key);
 	}
+
+	/* 
+	* @see com.vti.services.AccountServices#findTeamById(long)
+	*/
+	@Override
+	public Account findAccountById(long idAccount) {
+		return accountRepo.findAccountById(idAccount);
+	}
 }

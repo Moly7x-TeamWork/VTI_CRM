@@ -15,5 +15,5 @@ public class ExceptionHandlers {
 	public ResponseEntity<ErrorDetails> handlerDataException(DataException exception, WebRequest request){
 		ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getError(), exception.getMessage());
 		return new ResponseEntity<ErrorDetails>(errorDetails, HttpStatus.BAD_REQUEST);
-	}
+	}	
 }

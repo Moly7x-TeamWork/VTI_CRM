@@ -19,4 +19,15 @@ public interface AccountServices {
 	
 	//Search account by keyword in email
 	List<AccountDTO> searchAccount(String key);
+	
+	/**
+	 * 
+	 * This method is find account by ID. 
+	 * 
+	 * @author: Tân
+	 * @create_date: 12/09/2020
+	 * @param idAccount
+	 * @return Account
+	 */
+	Account findAccountById(long idAccount);
 }

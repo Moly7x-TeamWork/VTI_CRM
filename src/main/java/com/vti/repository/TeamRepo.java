@@ -11,16 +11,11 @@ import com.vti.entity.Team;
 @Repository
 public interface TeamRepo extends JpaRepository<Team, Long>{
 	
-	/*
-	 * find all account in database, and connect to account id
-	*/
-//	@Query("SELECT new com.vti.dto.TeamDTO(t.idTeam, t.teamName, t.account, t.creationDate) FROM Team t JOIN t.account Account WHERE t.roleInTeam = 'Leader' ORDER BY t.idTeam")
-//	List<TeamDTO> findInfoLeaderTeam();
-//	
-//	@Query("SELECT new com.vti.dto.TeamDTO(t.idTeam, t.teamName, t.account, t.creationDate) FROM Team t JOIN t.account Account WHERE Account.email = :email")
-//	TeamDTO findInfoLeaderByEmail(@Param("email") String email);
-	
 	//find Team by teamName
 	@Query("SELECT t FROM Team t WHERE t.teamName = :teamName")
 	Team findTeamByTeamName(@Param("teamName") String teamName);
+	
+	//find Team by id
+	@Query("SELECT t FROM Team t WHERE t.idTeam = :idTeam")
+	Team findTeamById(@Param("idTeam") long idTeam);
 }

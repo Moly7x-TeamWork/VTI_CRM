@@ -40,4 +40,12 @@ public class TeamServiceIMP implements TeamService {
 		Team teamNew = new Team(teamName, new Date());
 		return teamRepo.saveAndFlush(teamNew);
 	}
+
+	/* 
+	* @see com.vti.services.TeamService#findTeamById(long)
+	*/
+	@Override
+	public Team findTeamById(long idTeam) {
+		return teamRepo.findTeamById(idTeam);
+	}
 }
