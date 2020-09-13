@@ -27,7 +27,7 @@ import com.vti.services.TeamService;
 @RestController
 @RequestMapping("api/admin/v1")
 @CrossOrigin(origins = "*")
-public class AminController {
+public class AdminController {
 
 	@Autowired
 	private RoleService roleService;
