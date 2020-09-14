@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.vti.dto.IAccountDTO;
 import com.vti.dto.TeamDTO;
-import com.vti.dto.TeamMemberDTO;
 
 public interface TeamMemberService {
 	/**
@@ -39,9 +38,10 @@ public interface TeamMemberService {
 	 * @author: Tân
 	 * @create_date: 11/09/2020
 	 * @param teamId
-	 * @return list of team member, TeamMemberDTO
+	 * @return list of team member and info of that team
+	 * @exception show error if idTeam is null or character
 	 */
-	List<TeamMemberDTO> findAllTeamMemberByTeamID(long idTeam);
+	Map<String, Object> findAllTeamMemberByTeamID(String idTeamString);
 	
 	/**
 	 * 
@@ -52,7 +52,7 @@ public interface TeamMemberService {
 	 * @param teamId
 	 * @return list of team member, AccountDTO
 	 */
-	List<IAccountDTO> findAllAccountNotInTeamByTeamID(long idTeam);
+	List<IAccountDTO> findAllAccountNotInTeamByTeamID(String idTeam);
 	
 	/**
 	 * 
@@ -64,7 +64,7 @@ public interface TeamMemberService {
 	 * @param listIdAccount
 	 * @return map of noti
 	 */
-	Map<String, String> addAccountToTeam(List<Long> listIdTeam, List<Long> listIdAccount);
+	Map<String, String> addAccountToTeam(List<String> listIdTeamString, List<String> listIdAccountString);
 	
 	/**
 	 * 
@@ -76,5 +76,5 @@ public interface TeamMemberService {
 	 * @param listIdAccount
 	 * @return
 	 */
-	Map<String, String> deleteAccountFromTeam(List<Long> listIdTeam, List<Long> listIdAccount);
+	Map<String, String> deleteAccountFromTeam(List<String> listIdTeamString, List<String> listIdAccountString);
 }

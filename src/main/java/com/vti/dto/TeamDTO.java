@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.vti.entity.Account;
+import com.vti.entity.Team;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,5 +35,12 @@ public class TeamDTO {
 		this.email = account.getEmail();
 		this.teamName = teamName;
 		this.creationDate = dateFormat.format(creationDate);
+	}
+	
+	public TeamDTO(Team team) {
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		this.idTeam = team.getIdTeam();
+		this.teamName = team.getTeamName();
+		this.creationDate = dateFormat.format(team.getCreationDate());
 	}
 }
