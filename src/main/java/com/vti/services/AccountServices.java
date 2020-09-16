@@ -1,6 +1,7 @@
 package com.vti.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.repository.query.Param;
 
@@ -17,8 +18,16 @@ public interface AccountServices {
 	
 	AccountDTO createAccount(AccountDTO accountDTO, Role role);
 	
-	//Search account by keyword in email
-	List<AccountDTO> searchAccount(String key);
+	/**
+	 * 
+	 * Search account by keyword in email
+	 * 
+	 * @author: Tân
+	 * @create_date: 15/09/2020
+	 * @param key
+	 * @return list account has only idAccount and email
+	 */
+	List<Map<String, Object>> searchAccount(String key);
 	
 	/**
 	 * 

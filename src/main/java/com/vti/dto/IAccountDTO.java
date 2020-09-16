@@ -2,6 +2,7 @@
 package com.vti.dto;
 
 // for findAllAccountNotInTeamByTeamID, gender is String not Enum
+// JPA interface projection
 public interface IAccountDTO {
 	
 	public long getIdAccount();

@@ -1,7 +1,11 @@
 //
 package com.vti.servicesImp;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,13 +62,24 @@ public class AccountServicesIMP implements AccountServices {
 	* @see com.vti.services.AccountServices#searchAccount(java.lang.String)
 	*/
 	@Override
-	public List<AccountDTO> searchAccount(String key) {
+	public List<Map<String, Object>> searchAccount(String key) {
 		//Check length key word, if zero or null or only whitespace, throw exception
 		if (key == null || key.isBlank() || key.isEmpty()) {
 			throw new DataException("Wrong text search", "This text search is null or only has whitespace");
 		}
-		// search and return result
-		return accountRepo.searchAccountbyKeyWord(key);
+		
+		// search
+		List<AccountDTO> accountList = accountRepo.searchAccountbyKeyWord(key);
+		
+		// create result
+		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+		for (int i = 0; i < accountList.size(); ++i) {
+			result.add(new TreeMap<String, Object>(Collections.reverseOrder()));
+			result.get(i).put("email", accountList.get(i).getEmail());
+			result.get(i).put("idAccount", accountList.get(i).getIdAccount());
+		}
+		
+		return result;
 	}
 
 	/* 

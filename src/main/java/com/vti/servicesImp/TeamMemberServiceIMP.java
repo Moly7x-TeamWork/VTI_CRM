@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -107,10 +108,18 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		if (teamService.findTeamById(idTeam) == null) {
 			throw new DataException("Team", "Can't find this team");
 		}
-
-		// Create the return use treemap cause it's ordered
+		
+		//Create map team Info by linked hasmap cause it's preserves the insertion order
+		TeamDTO teamInfoDTO = new TeamDTO(teamService.findTeamById(idTeam));
+		Map<String, Object> teamInfo = new LinkedHashMap<String, Object>();
+		teamInfo.put("idTeam", teamInfoDTO.getIdTeam());
+		teamInfo.put("teamName", teamInfoDTO.getTeamName());
+		teamInfo.put("creationDate", teamInfoDTO.getCreationDate());
+		
+		
+		// Create the return use treemap cause it's ordered BY KEY
 		Map<String, Object> teamDetails = new TreeMap<String, Object>();
-		teamDetails.put("teamInfo", new TeamDTO(teamService.findTeamById(idTeam)));
+		teamDetails.put("teamInfo", teamInfo);
 		teamDetails.put("teamMember", teamMemberRepo.findAllTeamMemberByTeamID(idTeam));
 
 		return teamDetails;
@@ -212,7 +221,7 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 		String timestamp = dateFormat.format(new Date());
 
-		Map<String, String> noti = new TreeMap<String, String>();
+		Map<String, String> noti = new LinkedHashMap<String, String>();
 
 		// Warning or success
 		if (countAdded != listIdAccount.size()) {
@@ -320,7 +329,7 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 		String timestamp = dateFormat.format(new Date());
 
-		Map<String, String> noti = new TreeMap<String, String>();
+		Map<String, String> noti = new LinkedHashMap<String, String>();
 		// Warning or success
 		if (countAccountDeleted != listIdAccount.size()) {
 			noti.put("message", "WARNING");
