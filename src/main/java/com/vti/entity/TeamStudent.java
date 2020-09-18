@@ -29,10 +29,10 @@ public class TeamStudent {
 	private Student student;
 	
 	@ManyToOne
-	@JoinColumn(name = "idaccount")
+	@JoinColumn(name = "idaccount", nullable = true)
 	private Account account;
 	
 	@ManyToOne
-	@JoinColumn(name = "idteam")
+	@JoinColumn(name = "idteam", nullable = true)
 	private Team team;
 }

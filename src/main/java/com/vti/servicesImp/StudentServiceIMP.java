@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vti.dto.CreateStudentDTO;
+import com.vti.dto.StudentDTO;
 import com.vti.entity.Student;
 import com.vti.exception.DataException;
 import com.vti.repository.StudentRepo;
@@ -45,7 +45,7 @@ public class StudentServiceIMP implements StudentService{
 	* @see com.vti.services.StudentService#createStudent(com.vti.entity.Student)
 	*/
 	@Override
-	public CreateStudentDTO createStudent(CreateStudentDTO studentDTO) {
+	public StudentDTO createStudent(StudentDTO studentDTO) {
 		// Check this student exist or not
 		Optional<Student> checkStudent = studentRepo.findById(studentDTO.getPhoneNumber());
 		
@@ -80,6 +80,22 @@ public class StudentServiceIMP implements StudentService{
 		//save it
 		studentRepo.saveAndFlush(student);
 		return studentDTO;
+	}
+
+	/* 
+	* @see com.vti.services.StudentService#findStudentById(java.lang.String)
+	*/
+	@Override
+	public Optional<Student> findStudentById(String phoneNumber) {
+		return studentRepo.findById(phoneNumber);
+	}
+
+	/* 
+	* @see com.vti.services.StudentService#findStudentByListPhoneNumber(java.lang.String)
+	*/
+	@Override
+	public List<String> findStudentByListPhoneNumber(List<String> phoneNumber) {
+		return studentRepo.findStudentByListPhoneNumber(phoneNumber);
 	}
 
 }

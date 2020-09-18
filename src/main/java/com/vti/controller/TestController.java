@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vti.dto.TeamStudentDTO;
+import com.vti.dto.ITeamStudentDTO;
 import com.vti.repository.StudentRepo;
 import com.vti.services.StudentService;
 import com.vti.services.TeamService;
@@ -38,7 +38,7 @@ public class TestController {
 //	}
 
 	@GetMapping("test")
-	public List<TeamStudentDTO> findAllStudent() {
+	public List<ITeamStudentDTO> findAllStudent() {
 		return teamStudentService.findAllTeamStudent();
 	}
 }

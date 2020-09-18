@@ -2,8 +2,9 @@
 package com.vti.services;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.vti.dto.CreateStudentDTO;
+import com.vti.dto.StudentDTO;
 import com.vti.entity.Student;
 
 public interface StudentService {
@@ -17,5 +18,9 @@ public interface StudentService {
 	 */
 	List<Student> findAllStudent();
 	
-	CreateStudentDTO createStudent(CreateStudentDTO studentDTO);
+	StudentDTO createStudent(StudentDTO studentDTO);
+	
+	Optional<Student> findStudentById(String phoneNumber);
+	
+	List<String> findStudentByListPhoneNumber(List<String> phoneNumber);
 }

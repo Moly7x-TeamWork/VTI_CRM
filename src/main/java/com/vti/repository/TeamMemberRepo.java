@@ -2,6 +2,7 @@
 package com.vti.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -28,6 +29,9 @@ public interface TeamMemberRepo extends JpaRepository<TeamMember, TeamMemberID> 
 	// find Team by email leader
 	@Query("SELECT new com.vti.dto.TeamDTO(Team.idTeam, Team.teamName, tm.account, Team.creationDate) FROM TeamMember tm JOIN tm.team Team JOIN tm.account Account WHERE Account.email = :email")
 	TeamDTO findInfoByLeaderEmail(@Param("email") String email);
+	
+	// check this account has belong to any team or not
+	Optional<List<TeamMember>> findByAccount(Account account);
 
 	// find all member IN team by ID teams, leader always in index 0
 	@Query("SELECT new com.vti.dto.TeamMemberDTO(Account.idAccount, Account.firstName, Account.lastName, Account.email, tm.roleInTeam) FROM TeamMember tm JOIN tm.account Account WHERE tm.team.idTeam = :idTeam ORDER BY tm.roleInTeam")

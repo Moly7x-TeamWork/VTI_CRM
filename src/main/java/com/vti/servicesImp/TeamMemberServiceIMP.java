@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -357,6 +358,14 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		noti.put("timestamp", timestamp);
 		
 		return noti;
+	}
+
+	/* 
+	* @see com.vti.services.TeamMemberService#findByAccount(com.vti.entity.Account)
+	*/
+	@Override
+	public Optional<List<TeamMember>> findByAccount(Account account) {
+		return teamMemberRepo.findByAccount(account);
 	}
 
 }

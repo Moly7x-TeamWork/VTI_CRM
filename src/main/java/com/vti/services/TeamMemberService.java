@@ -3,9 +3,12 @@ package com.vti.services;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.vti.dto.IAccountDTO;
 import com.vti.dto.TeamDTO;
+import com.vti.entity.Account;
+import com.vti.entity.TeamMember;
 
 public interface TeamMemberService {
 	/**
@@ -19,6 +22,17 @@ public interface TeamMemberService {
 	 * @return TeamDTO
 	 */
 	TeamDTO findInfoByLeaderEmail(String email);
+	
+	/**
+	 * 
+	 * This method is check this account has belong to any team or not. 
+	 * 
+	 * @author: Tân
+	 * @create_date: 17/09/2020
+	 * @param account
+	 * @return
+	 */
+	Optional<List<TeamMember>> findByAccount(Account account);
 	
 	/**
 	 * 
