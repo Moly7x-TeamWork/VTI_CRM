@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.vti.entity.Student;
 
 @Repository
-public interface StudentRepo extends JpaRepository<Student, String>{
+public interface StudentRepo extends JpaRepository<Student, String>, StudentRepoCustom{
 	
 	@Query("SELECT s.phoneNumber FROM Student s WHERE s.phoneNumber IN :listPhoneNumber")
-	List<String> findStudentByListPhoneNumber(@Param("listPhoneNumber") List<String> phoneNumber);
-
+	List<String> filterToListPhoneNumberExist(@Param("listPhoneNumber") List<String> phoneNumber);
+	
 }

@@ -35,9 +35,4 @@ public class TeamStudentController {
 	public Map<String, String> addStudentToTeamAdviser(@RequestBody Map<String, List<String>> input) {
 		return teamStudentService.addStudentToTeamAdviser(input.get("idTeam"), input.get("idAccount"), input.get("listPhoneNumberStudent"));
 	}
-	
-//	@PostMapping("students")
-//	public CreateStudentDTO createStudent(@RequestBody CreateStudentDTO studentDTO) {
-//		return studentService.createStudent(studentDTO);
-//	}
 }
