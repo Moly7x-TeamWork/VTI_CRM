@@ -179,10 +179,10 @@ public class TeamStudentServiceIMP implements TeamStudentService {
 		// Create details message
 		String details;
 		if (!(listIdTeamString.isEmpty() || listIdTeamString == null)) {
-			details = "System has been inserted " + countInserted + "/" + listPhoneNumberStudent.size()
+			details = "System has inserted " + countInserted + "/" + listPhoneNumberStudent.size()
 					+ " students for " + checkTeam.getTeamName() + " team.";
 		} else {
-			details = "System has been inserted " + countInserted + "/" + listPhoneNumberStudent.size()
+			details = "System has inserted " + countInserted + "/" + listPhoneNumberStudent.size()
 					+ " students for " + checkAccount.getEmail() + " account.";
 		}
 

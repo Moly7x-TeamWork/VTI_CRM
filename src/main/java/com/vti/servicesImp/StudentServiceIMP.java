@@ -158,7 +158,7 @@ public class StudentServiceIMP implements StudentService {
 			int sizeRow = rowIterator.next().getLastCellNum() - 1;
 
 			if (sizeRow != 12) {
-				throw new DataException("Column", "Number of Column is not right. It must has 13 columns");
+				throw new DataException("Column", "Number of Columns is not right. It must has 13 columns");
 			}
 
 			// Create a DataFormatter to format and get each cell's value as String
@@ -217,7 +217,7 @@ public class StudentServiceIMP implements StudentService {
 			}
 
 			// create details message
-			String details = "System has been added " + countInserted + "/" + countRecord + " student to database.";
+			String details = "System been added " + countInserted + "/" + countRecord + " student to database.";
 
 			if (countInserted != countRecord) {
 				details = details + " There are " + (countRecord - countInserted) + " phone numbers duplicate.";
@@ -322,7 +322,7 @@ public class StudentServiceIMP implements StudentService {
 		int sizeRow = rowIterator.next().getLastCellNum();
 
 		if (sizeRow != 2) {
-			throw new DataException("Column", "Number of Column is not right. It must has 2 columns");
+			throw new DataException("Column", "Number of Columns is not right. It must has 2 columns");
 		}
 
 		while (rowIterator.hasNext()) {

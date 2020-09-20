@@ -76,7 +76,7 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		// Check email has been leader or not
 		TeamDTO checkTeamDTO = findInfoByLeaderEmail(teamDTO.getEmail());
 		if (checkTeamDTO != null) {
-			throw new DataException("Dupplicate email", "This email has been used in another team");
+			throw new DataException("Duplicate email", "This email has been used in another team");
 		}
 
 		// Create new team
@@ -232,7 +232,7 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		}
 
 		// create details message
-		String details = "System has been added " + countAdded + "/" + listIdAccount.size() + " account to "
+		String details = "System has added " + countAdded + "/" + listIdAccount.size() + " account to "
 				+ checkTeam.getTeamName() + " team.";
 
 		if (countAccountNotExist != 0) {
@@ -339,7 +339,7 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 		}
 
 		// Create details message
-		String details = "System has been deleted " + countAccountDeleted + "/" + listIdAccount.size()
+		String details = "System has deleted " + countAccountDeleted + "/" + listIdAccount.size()
 				+ " account from " + checkTeam.getTeamName() + " team.";
 
 		if (countAccountNotExist > 0) {
