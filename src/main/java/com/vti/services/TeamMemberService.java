@@ -70,6 +70,17 @@ public interface TeamMemberService {
 	
 	/**
 	 * 
+	 * This method is find all account not in All team . 
+	 * 
+	 * @author: Tân
+	 * @create_date: 12/09/2020
+	 * @param teamId
+	 * @return list of team member, AccountDTO
+	 */
+	List<IAccountDTO> findAllAccountNotInAllTeam();
+	
+	/**
+	 * 
 	 * This method is add account to team. 
 	 * 
 	 * @author: Tân

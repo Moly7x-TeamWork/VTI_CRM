@@ -146,6 +146,14 @@ public class TeamMemberServiceIMP implements TeamMemberService {
 
 		return teamMemberRepo.findAllAccountNotInTeamByTeamID(idTeam);
 	}
+	
+	/* 
+	* @see com.vti.services.TeamMemberService#findAllAccountNotInAllTeam()
+	*/
+	@Override
+	public List<IAccountDTO> findAllAccountNotInAllTeam() {
+		return teamMemberRepo.findAllAccountNotInAllTeam();
+	}
 
 	/*
 	 * @see com.vti.services.TeamMemberService#addAccountToTeam(java.util.List,
