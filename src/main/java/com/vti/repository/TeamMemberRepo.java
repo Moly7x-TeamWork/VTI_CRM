@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.vti.dto.IAccountDTO;
+import com.vti.dto.IAccountDetail;
 import com.vti.dto.TeamDTO;
 import com.vti.dto.TeamMemberDTO;
 import com.vti.entity.Account;
@@ -22,6 +23,11 @@ import com.vti.entity.TeamMemberID;
 
 @Repository
 public interface TeamMemberRepo extends JpaRepository<TeamMember, TeamMemberID> {
+	
+	// find all account, in team and not in team
+	@Query(value = "SELECT Account.idAccount, Account.email, Account.firstName, Account.lastName, Account.gender, ti.teamName, `role`.nameRole FROM teamMember tm JOIN teamInfo ti ON tm.idteam = ti.idteam RIGHT JOIN Account on tm.idAccount = Account.idAccount JOIN `role` on `role`.idRole = Account.idrole ORDER BY Account.idAccount;", nativeQuery = true)
+	List<IAccountDetail> findAllAccountsDetail();
+	
 	// find all team and leader email
 	@Query("SELECT new com.vti.dto.TeamDTO(Team.idTeam, Team.teamName, tm.account, Team.creationDate) FROM TeamMember tm JOIN tm.team Team JOIN tm.account Account WHERE tm.roleInTeam = 'Leader' ORDER BY Team.idTeam")
 	List<TeamDTO> findInfoLeaderTeam();

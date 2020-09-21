@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vti.dto.AccountDTO;
+import com.vti.dto.IAccountDetail;
 import com.vti.entity.Account;
 import com.vti.entity.Role;
 import com.vti.exception.DataException;
 import com.vti.repository.AccountRepo;
+import com.vti.repository.TeamMemberRepo;
 import com.vti.services.AccountServices;
 
 @Service
@@ -22,10 +24,14 @@ public class AccountServicesIMP implements AccountServices {
 
 	@Autowired
 	private AccountRepo accountRepo;
+	
+	@Autowired
+	private TeamMemberRepo teamMemberRepo;
 
 	@Override
-	public List<AccountDTO> findAllInfoAccount() {
-		return accountRepo.findAllInfoAccount();
+	public List<IAccountDetail> findAllInfoAccount() {
+		//return accountRepo.findAllInfoAccount();
+		return teamMemberRepo.findAllAccountsDetail();
 	}
 
 	@Override
@@ -63,10 +69,10 @@ public class AccountServicesIMP implements AccountServices {
 	*/
 	@Override
 	public List<Map<String, Object>> searchAccount(String key) {
-		//Check length key word, if zero or null or only whitespace, throw exception
-		if (key == null || key.isBlank() || key.isEmpty()) {
-			throw new DataException("Wrong text search", "This text search is null or only has whitespace");
-		}
+//		//Check length key word, if zero or null or only whitespace, throw exception
+//		if (key == null || key.isBlank() || key.isEmpty()) {
+//			throw new DataException("Wrong text search", "This text search is null or only has whitespace");
+//		}
 		
 		// search
 		List<AccountDTO> accountList = accountRepo.searchAccountbyKeyWord(key);

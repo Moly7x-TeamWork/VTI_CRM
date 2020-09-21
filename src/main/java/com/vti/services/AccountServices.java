@@ -6,11 +6,12 @@ import java.util.Map;
 import org.springframework.data.repository.query.Param;
 
 import com.vti.dto.AccountDTO;
+import com.vti.dto.IAccountDetail;
 import com.vti.entity.Account;
 import com.vti.entity.Role;
 
 public interface AccountServices {
-	List<AccountDTO> findAllInfoAccount();
+	List<IAccountDetail> findAllInfoAccount();
 	
 	Account findByEmail(String email);
 	

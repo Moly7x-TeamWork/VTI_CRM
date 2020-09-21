@@ -1,6 +1,9 @@
 //
 package com.vti.services;
 
+import java.util.List;
+import java.util.Map;
+
 import com.vti.entity.Team;
 
 public interface TeamService {	
@@ -40,4 +43,15 @@ public interface TeamService {
 	 * @return Team
 	 */
 	Team createTeam(String teamName);
+	
+	/**
+	 * 
+	 * This method is search team by teamname and return list of team has just found.
+	 * 
+	 * @author: Tân
+	 * @create_date: 21/09/2020
+	 * @param teamName
+	 * @return list of Team
+	 */
+	List<Map<String, String>> searchTeamByTeamName(String key);
 }

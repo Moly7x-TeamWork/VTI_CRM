@@ -43,4 +43,10 @@ public class TeamDTO {
 		this.teamName = team.getTeamName();
 		this.creationDate = dateFormat.format(team.getCreationDate());
 	}
+	
+	// for searching team
+	public TeamDTO(long idTeam,String teamName) {
+		this.idTeam = idTeam;
+		this.teamName = teamName;
+	}
 }

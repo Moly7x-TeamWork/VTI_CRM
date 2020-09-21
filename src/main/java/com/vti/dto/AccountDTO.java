@@ -8,6 +8,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * This class is for creating account. 
+ * 
+ * @author: Tân
+ * @create_date: 21/09/2020
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

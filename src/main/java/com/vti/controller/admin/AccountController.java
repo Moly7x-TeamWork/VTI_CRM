@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.dto.AccountDTO;
+import com.vti.dto.IAccountDetail;
 import com.vti.services.AccountServices;
 import com.vti.services.RoleService;
 
@@ -29,7 +30,7 @@ public class AccountController {
 
 	// Account
 	@GetMapping("accounts")
-	public List<AccountDTO> getAccounts() {
+	public List<IAccountDetail> getAccounts() {
 		return accountServices.findAllInfoAccount();
 	}
 
