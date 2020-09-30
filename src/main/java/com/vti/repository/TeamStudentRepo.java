@@ -13,7 +13,7 @@ import com.vti.entity.TeamStudent;
 @Repository
 public interface TeamStudentRepo extends JpaRepository<TeamStudent, String>, TeamStudentRepoCustom{
 	
-	@Query(value = "SELECT si.firstName, si.lastName, so.sourceDetail `source`, si.phoneNumber, tg.targetDetail targets, st.statusDetail `status`, ti.teamName FROM teamStudent ts RIGHT JOIN studentInfo si on ts.phoneNumber = si.phoneNumber LEFT JOIN teamInfo ti on ts.idTeam = ti.idTeam LEFT JOIN Target tg ON tg.idTarget = si.idTarget LEFT JOIN `status` st ON st.idStatus = si.idStatus LEFT JOIN `source` so ON so.idSource = si.idSource ORDER BY ti.teamName DESC;", nativeQuery = true)
+	@Query(value = "SELECT si.firstName, si.lastName, so.sourceDetail `source`, si.phoneNumber, tg.targetDetail targets, st.statusDetail `status`, ti.teamName, ac.firstName adviserFirstName, ac.lastName adviserLastName FROM teamStudent ts RIGHT JOIN studentInfo si on ts.phoneNumber = si.phoneNumber LEFT JOIN teamInfo ti ON ts.idTeam = ti.idTeam LEFT JOIN `account` ac ON ac.idAccount = ts.idAccount LEFT JOIN Target tg ON tg.idTarget = si.idTarget LEFT JOIN `status` st ON st.idStatus = si.idStatus LEFT JOIN `source` so ON so.idSource = si.idSource ORDER BY ti.teamName DESC;", nativeQuery = true)
 	List<ITeamStudentDTO> findAllTeamStudent();
 	
 }

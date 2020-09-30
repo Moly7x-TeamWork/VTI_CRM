@@ -16,5 +16,9 @@ public interface ITeamStudentDTO {
 	public String getStatus();
 
 	public String getTeamName();
+	
+	public String getAdviserFirstName();
+	
+	public String getAdviserLastName();
 
 }
