@@ -22,7 +22,5 @@ public interface IAccountDetail {
 	public String getTeamName();
 	
 	public String getNameRole();
-	
-	public String setEmail(String email);
 
 }

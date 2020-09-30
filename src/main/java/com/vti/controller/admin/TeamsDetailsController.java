@@ -3,7 +3,6 @@ package com.vti.controller.admin;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +21,7 @@ import com.vti.services.TeamMemberService;
 @RequestMapping("api/admin/v1")
 @CrossOrigin(origins = "*")
 public class TeamsDetailsController {
-
+	
 	@Autowired
 	private TeamMemberService teamMemberService;
 
@@ -33,13 +32,8 @@ public class TeamsDetailsController {
 	}
 
 	@GetMapping("teamDetails/accountNotInTeam")
-	public List<IAccountDTO> getTeamDetailsAccountNotInTeam(@RequestParam("idTeam") Optional<String> idTeam) {
-		if (idTeam.isPresent()) {
-			return teamMemberService.findAllAccountNotInTeamByTeamID(idTeam.get());
-		} else {
-			return teamMemberService.findAllAccountNotInAllTeam();
-		}
-
+	public List<IAccountDTO> getTeamDetailsAccountNotInTeam(@RequestParam("idTeam") String idTeam) {
+		return teamMemberService.findAllAccountNotInTeamByTeamID(idTeam);
 	}
 
 	@PostMapping("teamDetails")
