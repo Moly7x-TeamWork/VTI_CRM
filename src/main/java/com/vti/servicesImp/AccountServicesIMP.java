@@ -24,25 +24,24 @@ public class AccountServicesIMP implements AccountServices {
 
 	@Autowired
 	private AccountRepo accountRepo;
-	
+
 	@Autowired
 	private TeamMemberRepo teamMemberRepo;
 
 	@Override
 	public List<IAccountDetail> findAllInfoAccount() {
-		//return accountRepo.findAllInfoAccount();
 		return teamMemberRepo.findAllAccountsDetail();
 	}
 
 	@Override
 	public AccountDTO createAccount(AccountDTO accountDTO, Role role) {
-		//Check email exist or not
+		// Check email exist or not
 		AccountDTO checkAcccountDTO = accountRepo.findInfoByEmail(accountDTO.getEmail());
 		if (checkAcccountDTO != null) {
 			throw new DataException("Duplicated email", "This email has been used");
 		}
-		
-		//If not, create account
+
+		// If not, create account
 		Account account = new Account();
 		account.setRole(role);
 		account.setEmail(accountDTO.getEmail());
@@ -64,19 +63,19 @@ public class AccountServicesIMP implements AccountServices {
 		return accountRepo.findInfoByEmail(email);
 	}
 
-	/* 
-	* @see com.vti.services.AccountServices#searchAccount(java.lang.String)
-	*/
+	/*
+	 * @see com.vti.services.AccountServices#searchAccount(java.lang.String)
+	 */
 	@Override
 	public List<Map<String, Object>> searchAccount(String key) {
 //		//Check length key word, if zero or null or only whitespace, throw exception
 //		if (key == null || key.isBlank() || key.isEmpty()) {
 //			throw new DataException("Wrong text search", "This text search is null or only has whitespace");
 //		}
-		
+
 		// search
 		List<AccountDTO> accountList = accountRepo.searchAccountbyKeyWord(key);
-		
+
 		// create result
 		List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
 		for (int i = 0; i < accountList.size(); ++i) {
@@ -84,13 +83,13 @@ public class AccountServicesIMP implements AccountServices {
 			result.get(i).put("email", accountList.get(i).getEmail());
 			result.get(i).put("idAccount", accountList.get(i).getIdAccount());
 		}
-		
+
 		return result;
 	}
 
-	/* 
-	* @see com.vti.services.AccountServices#findTeamById(long)
-	*/
+	/*
+	 * @see com.vti.services.AccountServices#findTeamById(long)
+	 */
 	@Override
 	public Account findAccountById(long idAccount) {
 		return accountRepo.findAccountById(idAccount);
